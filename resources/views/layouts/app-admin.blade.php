@@ -1,6 +1,6 @@
 <!DOCTYPE html>
 <html lang="en" class="light-style layout-menu-fixed" dir="ltr" data-theme="theme-default"
-    data-assets-path="../assets/admin/assets/" data-template="vertical-menu-template-free">
+    data-assets-path="{{ asset('assets/admin/assets/') }}" data-template="vertical-menu-template-free">
 
 <head>
     <meta charset="utf-8" />
@@ -12,7 +12,7 @@
     <meta name="description" content="" />
 
     <!-- Favicon -->
-    <link rel="icon" type="image/x-icon" href="../assets/admin/assets/img/favicon/favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="{{ asset('assets/admin/assets/img/favicon/favicon.ico') }}" />
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
@@ -22,25 +22,30 @@
         rel="stylesheet" />
 
     <!-- Icons. Uncomment required icon fonts -->
-    <link rel="stylesheet" href="../assets/admin/assets/vendor/fonts/boxicons.css" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/assets/vendor/fonts/boxicons.css') }}" />
 
     <!-- Core CSS -->
-    <link rel="stylesheet" href="../assets/admin/assets/vendor/css/core.css" class="template-customizer-core-css" />
-    <link rel="stylesheet" href="../assets/admin/assets/vendor/css/theme-default.css"
+    <link rel="stylesheet" href="{{ asset('assets/admin/assets/vendor/css/core.css') }}"
+        class="template-customizer-core-css" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/assets/vendor/css/theme-default.css') }}"
         class="template-customizer-theme-css" />
-    <link rel="stylesheet" href="../assets/admin/assets/css/demo.css" />
+    <link rel="stylesheet" href="{{ asset('assets/admin/assets/css/demo.css') }}" />
 
     <!-- Vendors CSS -->
-    <link rel="stylesheet" href="../assets/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.css') }}" />
 
     <!-- Page CSS -->
 
-    <!-- Helpers -->
-    <script src="../assets/admin/assets/vendor/js/helpers.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
-    <!--! Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
-    <!--? Config:  Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file.  -->
-    <script src="../assets/admin/assets/js/config.js"></script>
+    <!-- Helpers -->
+    <script src="{{ asset('assets/admin/assets/vendor/js/helpers.js') }}"></script>
+
+    <!-- Template customizer & Theme config files MUST be included after core stylesheets and helpers.js in the <head> section -->
+    <!-- Config: Mandatory theme config file contain global vars & default theme options, Set your preferred theme option in this file. -->
+    <script src="{{ asset('assets/admin/assets/js/config.js') }}"></script>
+
 </head>
 
 <body>
@@ -135,7 +140,7 @@
                         <!-- Search -->
                         <div class="navbar-nav align-items-center">
                             <div class="nav-item d-flex align-items-center">
-                                Halaman Admin Mading JeWePe <a href="../index.php"
+                                Halaman Admin Mading JeWePe <a href="{{ route('home') }}"
                                     target="_blank"class="ms-3 btn btn-sm btn-icon btn-outline-primary">
                                     <span class= "tf-icons bx bx-link-external"></span>
                                 </a>
@@ -167,11 +172,11 @@
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <span class="fw-semibold d-block">
-                                                        {{ auth()->user()->name }}
+                                                        {{-- {{ auth()->user()->name }} --}}
 
                                                     </span>
                                                     <small class="text-muted">
-                                                        {{ auth()->user()->email }}
+                                                        {{-- {{ auth()->user()->email }} --}}
 
                                                     </small>
                                                 </div>
@@ -200,4 +205,5 @@
                 <!-- Content wrapper -->
                 <div class="content-wrapper">
 
-@yield('navbar-admin')
+
+                    @yield('navbar-admin')

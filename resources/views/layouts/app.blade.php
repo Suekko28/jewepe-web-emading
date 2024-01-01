@@ -51,7 +51,7 @@
 
                             <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu mx-auto">
                                 <li class="active"><a href="index.php">Beranda</a></li>
-                                <li><a href="{{route('login')}}">Login</a></li>
+                                <li><a href="{{route('login.form')}}">Login</a></li>
                                 <li class="has-children">
 
                             </ul>

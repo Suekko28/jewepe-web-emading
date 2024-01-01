@@ -150,7 +150,7 @@
                     type="text"
                     class="form-control"
                     id="email"
-                    name="email-username"
+                    name="email"
                     placeholder="Enter your email or username"
                     autofocus
                   />
@@ -184,7 +184,7 @@
               </form>
 
               <p class="text-center">
-                <a href="/home">
+                <a href="{{route('home')}}">
                   <span>Kembali ke Beranda</span>
                 </a>
               </p>

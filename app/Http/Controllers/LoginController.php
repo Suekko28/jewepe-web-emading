@@ -23,7 +23,7 @@ class LoginController extends Controller
     public function login(Request $request)
     {
         Session::flash('email', $request->email);
-    
+
         $request->validate([
             'email' => 'required',
             'password' => 'required',
@@ -31,25 +31,26 @@ class LoginController extends Controller
             'email.required' => 'Email wajib diisi',
             'password.required' => 'Password wajib diisi',
         ]);
-    
+
         $credentials = [
             'email' => $request->email,
             'password' => $request->password,
         ];
-    
+
         if (auth()->attempt($credentials)) {
             session(["token" => auth()->user()->createToken($request->email)->plainTextToken]);
-            return redirect('/dashboard');
+            return redirect()->route('dashboard');
         } else {
-            return redirect('/login')->withErrors('Invalid Credentials');
+            return redirect('login')->withErrors('Invalid Credentials');
         }
     }
-    
+
     public function logout()
     {
-        Auth::logout();
-        return redirect('login');
+        auth()->logout();
+        return redirect()->route('login.form');
     }
+
 
     public function register()
     {
@@ -78,13 +79,10 @@ class LoginController extends Controller
         $user = User::create([
             'name' => $request->name,
             'email' => $request->email,
-            'password' => hash::make($request->password),
-
+            'password' => bcrypt($request->password),
         ]);
 
-        Auth::login($user);
-
-        return redirect('/login')->with('success', $user->name . ' berhasil login');
+        return redirect()->route('login.form')->with('success', $user->name . ' berhasil login');
     }
 }
 

@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArtikelController;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\LoginController;
@@ -16,21 +17,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/login', [LoginController::class, 'index'])->name('login.form');
+Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
+Route::get('/register', [LoginController::class, 'register'])->name('register.form');
+Route::post('/create', [LoginController::class, 'create'])->name('register.submit');
+Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
+
+// Routes for authenticated users
 Route::middleware(['auth'])->group(function () {
-    Route::get('/login', [LoginController::class, 'index'])->name('login');
-    Route::post('/login', [LoginController::class, 'login'])->name('login.submit');
-    Route::get('/register', [LoginController::class, 'register'])->name('register.form');
-    Route::post('/create', [LoginController::class, 'create'])->name('register.submit');
-    Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
-});
-
-Route::middleware(['auth', 'admin'])->prefix('admin')->group(function () {
-
-    Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
-
-
+    // The 'login' route was causing a conflict; use 'dashboard' instead
+    Route::resource('/dashboard', ArtikelController::class);
+    Route::get('/dashboard', [ArtikelController::class, 'index'])->name('dashboard');
 });
 
 
-Route::get('/', [HomeController::class, 'index'])->name('home');
+Route::get('/home', [HomeController::class, 'index'])->name('home');
+
+Route::get('/article/{id}/show', [HomeController::class, 'ShowArticle'])->name('article.show');
+
+
 

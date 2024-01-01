@@ -134,17 +134,15 @@
                 </a>
               </div>
               <!-- /Logo -->
-              <h4 class="mb-2">Adventure starts here 🚀</h4>
-              <p class="mb-4">Make your app management easy and fun!</p>
-
+              <h4 class="mb-2">Welcome to e-Mading JEWEPE</h4>
               <form id="formAuthentication" class="mb-3" action="{{ route('register.submit') }}" method="POST">
                 @csrf
                 <div class="mb-3">
-                  <label for="username" class="form-label">Name</label>
+                  <label for="name" class="form-label">Name</label>
                   <input
                     type="text"
                     class="form-control"
-                    id="username"
+                    id="name"
                     name="name"
                     placeholder="Enter your name"
                     autofocus
