@@ -10,12 +10,6 @@
 </footer> <!-- /.site-footer -->
 
 <!-- Preloader -->
-<div id="overlayer"></div>
-<div class="loader">
-    <div class="spinner-border text-primary" role="status">
-        <span class="visually-hidden">Loading...</span>
-    </div>
-</div>
 
 <script src="assets/landing/js/bootstrap.bundle.min.js"></script>
 <script src="assets/landing/js/tiny-slider.js"></script>

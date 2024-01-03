@@ -11,15 +11,15 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Work+Sans:wght@400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{{ asset ('/assets/landing/fonts/icomoon/style.css')}}">
-    <link rel="stylesheet" href="{{ asset ('/assets/landing/fonts/flaticon/font/flaticon.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/landing/fonts/icomoon/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/landing/fonts/flaticon/font/flaticon.css') }}">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="{{ asset ('/assets/landing/css/tiny-slider.css') }}">
-    <link rel="stylesheet" href="{{ asset ('/assets/landing/css/aos.css') }}">
-    <link rel="stylesheet" href="{{ asset ('/assets/landing/css/glightbox.min.css') }}">
-    <link rel="stylesheet" href="{{ asset ('/assets/landing/css/style.css') }}">
-    <link rel="stylesheet" href="{{ asset ('/assets/landing/css/flatpickr.min.css') }}">
-    
+    <link rel="stylesheet" href="{{ asset('/assets/landing/css/tiny-slider.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/landing/css/aos.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/landing/css/glightbox.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/landing/css/style.css') }}">
+    <link rel="stylesheet" href="{{ asset('/assets/landing/css/flatpickr.min.css') }}">
+
     <title>JeWePe Mading</title>
 </head>
 
@@ -50,9 +50,14 @@
                             </form>
 
                             <ul class="js-clone-nav d-none d-lg-inline-block text-start site-menu mx-auto">
-                                <li class="active"><a href="index.php">Beranda</a></li>
-                                <li><a href="{{route('login.form')}}">Login</a></li>
-                                <li class="has-children">
+                                <li class="active"><a href="{{route('home')}}">Beranda</a></li>
+                                @if (auth()->check())
+                                    <!-- Pengguna sudah login, tampilkan dashboard link -->
+                                    <li><a href="{{ route('dashboard') }}">Dashboard</a></li>
+                                @else
+                                    <!-- Pengguna belum login, tampilkan login link -->
+                                    <li><a href="{{ route('login.form') }}">Login</a></li>
+                                @endif
 
                             </ul>
                         </div>
@@ -64,4 +69,4 @@
 </body>
 
 </html>
- @yield('navbar')
+@yield('navbar')

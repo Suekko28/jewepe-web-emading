@@ -23,10 +23,22 @@ class ArtikelFormRequest extends FormRequest
     {
         return [
             'image' => ['required','image','mimes:jpeg,png,jpg','max:2048'],
+            'header'=>['required','string','max:100'],
             'judul_artikel'=>['required','string','max:100'],
-            'isi_artikel' => ['required','string','max:100'],
+            'isi_artikel' => ['required','string'],
             'status_publish' => ['required', 'string', 'in:publish,draft'],
             
         ];
     }
+
+    public function messages()
+{
+    return [
+        'image.required' => 'Kolom gambar wajib diisi.',
+        'header.required' => 'Kolom header wajib diisi.',
+        'judul_artikel.required' => 'Kolom judul artikel wajib diisi.',
+        'isi_artikel.required' => 'Kolom isi artikel wajib diisi.',
+        'status_publish.required' => 'Kolom status publish wajib diisi.',
+    ];
+}
 }

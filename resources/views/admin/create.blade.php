@@ -21,7 +21,8 @@
     <link rel="stylesheet" href="{{ asset('assets/admin/assets/draft/demo.draft') }}" />
 
     <!-- Vendors draft -->
-    <link rel="stylesheet" href="{{ asset('assets/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.draft') }}" />
+    <link rel="stylesheet"
+        href="{{ asset('assets/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.draft') }}" />
 
     <!-- Page draft -->
 
@@ -36,6 +37,7 @@
 
         <section class="content">
             <div class="container-fluid">
+                @include('layouts.message')
                 <!-- Small boxes (Stat box) -->
                 <form action="{{ route('dashboard') }}" method="post" enctype="multipart/form-data">
                     @csrf
@@ -43,6 +45,11 @@
                         <div class="form-group mb-3">
                             <label for="gambar">Gambar</label>
                             <input type="file" class="form-control" id="image" name="image" placeholder="">
+                        </div>
+                        <div class="form-group mb-3">
+                            <label for="header">Header</label>
+                            <input type="text" class="form-control" id="header" name="header"
+                                placeholder="Masukkan Header">
                         </div>
                         <div class="form-group mb-3">
                             <label for="judul">Judul Artikel</label>
@@ -61,6 +68,7 @@
                             <input type="radio" id="draft" name="status_publish" value="draft">
                             <label for="draft">Draft</label><br>
                         </div>
+                     
                         <div class="d-flex flex-row-reverse">
                             <button type="submit" class="btn btn-primary ml-3 ms-3">Simpan</button>
                             <a href="{{ route('dashboard') }}" class="btn btn-danger">Batal</a>

@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\ArtikelFormRequest;
 use App\Models\tb_artikel;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 class ArtikelController extends Controller
 {
@@ -33,13 +34,20 @@ class ArtikelController extends Controller
     {
         $image = $request->file('image');
         $image->storeAs('public/images', $image->hashName());
-        
+    
         $data = $request->all();
-
-        tb_artikel::create($data);
+    
+        tb_artikel::create([
+            'image' => $image->hashName(),
+            'header' => $data['header'],
+            'judul_artikel' => $data['judul_artikel'],
+            'isi_artikel' => $data['isi_artikel'],
+            'status_publish' => $data['status_publish'],
+            
+        ]);
+    
         return redirect()->route('dashboard')->with('success', 'Data berhasil ditambahkan');
     }
-
     /**
      * Display the specified resource.
      */
@@ -62,30 +70,45 @@ class ArtikelController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, string $id)
+    public function update(ArtikelFormRequest $request, string $id)
     {
         // Temukan data dengan ID yang diberikan
         $data = tb_artikel::find($id);
 
-        if ($request->hasFile('profile')) {
-            $image = $request->file('profile');
-            $extension = $image->getClientOriginalExtension(); // Get the file extension
-            $nama_image = time() . '_' . uniqid() . '.' . $extension;
+        // Validasi data yang diterima dari formulir
+        $validatedData = $request->validated();
 
-            // Move the uploaded file to the storage location
-            $image->storeAs('public/images', $nama_image);
+        // Check apakah ada file gambar yang diupload
+        if ($request->hasFile('image')) {
+            // Menghapus gambar yang lama
+            Storage::delete('public/images/' . $data->image);
 
-            // Update the profile field with the new filename
-            $data->update(['profile' => $nama_image]);
+            // Upload gambar yang baru
+            $image = $request->file('image');
+            $image->storeAs('public/images', $image->hashName());
+
+            // Update data dengan informasi gambar yang baru
+            $data->update([
+                'image' => $image->hashName(),
+                'header' => $validatedData['header'],
+                'judul_artikel' => $validatedData['judul_artikel'],
+                'isi_artikel' => $validatedData['isi_artikel'],
+                'status_publish' => $validatedData['status_publish'],
+            ]);
+        } else {
+            // Jika tidak ada file gambar yang diupload, tetapkan nama gambar yang sudah ada
+            $data->update([
+                'header' => $validatedData['header'],
+                'judul_artikel' => $validatedData['judul_artikel'],
+                'isi_artikel' => $validatedData['isi_artikel'],
+                'status_publish' => $validatedData['status_publish'],
+            ]);
         }
-    
-        // Perbarui data dengan data baru dari formulir
-        $data->update($request->only(['image', 'judul_artikel', 'isi_artikel', 'status_publish']));
-    
+
         // Redirect ke rute yang diinginkan dengan pesan sukses
         return redirect()->route('dashboard')->with('success', 'Data berhasil diperbarui');
     }
-    
+
 
 
 

@@ -114,8 +114,8 @@
 
                 <ul class="menu-inner py-1">
                     <!-- Dashboard -->
-                    <li class="menu-item">
-                        <a href="manajemen_artikel.php" class="menu-link">
+                    <li class="menu-item active">
+                        <a href="{{route('dashboard')}}" class="menu-link">
                             <i class="menu-icon tf-icons bx bx-home-circle"></i>
                             <div data-i18n="Analytics">Manajemen Artikel</div>
                         </a>
@@ -172,11 +172,11 @@
                                                 </div>
                                                 <div class="flex-grow-1">
                                                     <span class="fw-semibold d-block">
-                                                        {{-- {{ auth()->user()->name }} --}}
+                                                        {{ auth()->user()->name }}
 
                                                     </span>
                                                     <small class="text-muted">
-                                                        {{-- {{ auth()->user()->email }} --}}
+                                                        {{ auth()->user()->email }}
 
                                                     </small>
                                                 </div>

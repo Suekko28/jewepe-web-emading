@@ -3,16 +3,17 @@
 @section('navbar-admin')
     <main>
         <div class="container-xxl flex-grow-1 container-p-y">
-            <a class="btn btn-primary mb-3" href="{{ url('dashboard/create') }}">Tambah Data</a>
+            <a class="btn btn-primary mb-3" href="{{ url('dashboard-article/create') }}">Tambah Data</a>
             <!-- Responsive Table -->
             <div class="card">
-                <h5 class="card-header">Responsive Table</h5>
+                <h5 class="card-header">Artikel</h5>
                 <div class="table-responsive text-nowrap">
                     <table class="table">
                         <thead>
                             <tr class="text-nowrap">
                                 <th>No</th>
                                 <th>Gambar</th>
+                                <th>Header</th>
                                 <th>Judul Artikel</th>
                                 <th>Isi Artikel</th>
                                 <th>Status</th>
@@ -25,14 +26,15 @@
                                 <tr>
                                     <th scope="row">{{ $i }}</th>
                                     <th scope="row">
-                                        <img src="{{Storage::url('public/images/' . $item->image )  }}" class="rounded" style="width: 150px">
+                                        <img src="{{ asset('storage/images/' . $item->image )  }}" class="rounded" style="width: 150px">
                                     </th>
+                                    <th scope="row">{{ $item->header }}</th>
                                     <th scope="row">{{ $item->judul_artikel }}</th>
                                     <th scope="row">{!!$item->isi_artikel !!}</th>
                                     <th scope="row">{{ $item->status_publish }}</th>
                                     <td scope="row">
-                                        <a href="" class="btn btn-warning mb-2"><i class=" fa fa-solid fa-pen-to-square" style="color:white;"></i></a>
-                                        <form action="" method="POST">
+                                        <a href="{{url('dashboard-article/'. $item->id). '/edit'}}" class="btn btn-warning mb-2"><i class=" fa fa-solid fa-pen-to-square" style="color:white;"></i></a>
+                                        <form action="{{url('dashboard-article/' . $item->id)}}" method="POST">
                                           @csrf
                                           @method('DELETE')
                                         <button class="btn btn-danger mb-2"><i class="fa fa-solid fa-trash"></i></button>

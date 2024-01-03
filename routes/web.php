@@ -26,14 +26,14 @@ Route::get('/logout', [LoginController::class, 'logout'])->name('logout');
 // Routes for authenticated users
 Route::middleware(['auth'])->group(function () {
     // The 'login' route was causing a conflict; use 'dashboard' instead
-    Route::resource('/dashboard', ArtikelController::class);
-    Route::get('/dashboard', [ArtikelController::class, 'index'])->name('dashboard');
+    Route::resource('/dashboard-article', ArtikelController::class);
+    Route::get('/dashboard-article', [ArtikelController::class, 'index'])->name('dashboard');
 });
 
 
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
-Route::get('/article/{id}/show', [HomeController::class, 'ShowArticle'])->name('article.show');
+Route::get('/article/{id}/show', [HomeController::class, 'show'])->name('article.show');
 
 
 

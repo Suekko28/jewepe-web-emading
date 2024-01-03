@@ -13,15 +13,14 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $data = DB::table('tb_artikels')->latest()->orderBy('id','desc')->paginate(4);
-
+        $data = tb_artikel::where('status_publish', 'publish')->orderBy('id', 'desc')->paginate(5);
         return view('home', compact('data'));
     }
+    
 
-    public function ShowArticle($id)
+    public function show(String $id)
     {
-        $data = tb_artikel::findOrFail($id);
-        
+        $data = tb_artikel::with('user')->findOrFail($id);        
         return view('index', compact('data'));
     }
 
