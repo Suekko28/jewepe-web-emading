@@ -1,7 +1,6 @@
    @extends('layouts.app')
 
    @section('navbar')
-       <main>
            <section class="section">
                <div class="container">
                    <div class="row mb-4">
@@ -38,7 +37,5 @@
 
                </div>
            </section>
-
            @include('layouts.footer')
-       </main>
    @endsection
