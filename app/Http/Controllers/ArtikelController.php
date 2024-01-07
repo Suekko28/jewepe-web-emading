@@ -118,7 +118,7 @@ class ArtikelController extends Controller
     public function destroy(string $id)
     {
         $data = tb_artikel::find($id)->delete();
-        return redirect()->route('dashboard')->with('success', 'Data berhasil ditambahkan');
+        return redirect()->route('dashboard')->with('success', 'Data berhasil Dihapus');
 
     }
 }

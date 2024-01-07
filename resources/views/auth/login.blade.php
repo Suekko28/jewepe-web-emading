@@ -137,11 +137,7 @@
               <!-- /Logo -->
               <h4 class="mb-2">Welcome to e-Mading JEWEPE</h4>
               <p class="mb-4"></p>
-              @if(session()->has('LoginError'))
-              <div class="alert alert-danger" role="alert">
-                  Invalid Credentials
-              </div>
-              @endif
+              @include('layouts.message')
               <form id="formAuthentication" class="mb-3"  action="{{ route('login.submit') }}" method="POST">
                 @csrf
                 <div class="mb-3">
@@ -190,7 +186,7 @@
               </p>
 
               <div class="text-center mt-4 font-weight-light">
-                Don't have an account? <a class="text-primary" href="{{route('register.form')}}">Create</a>
+                Don't have an account? <a class="text-primary" href="{{route('register.form')}}">Sign Up</a>
             </div>
           </div>
           <!-- /Register -->

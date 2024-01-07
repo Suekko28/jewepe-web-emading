@@ -4,6 +4,7 @@
     <main>
         <div class="container-xxl flex-grow-1 container-p-y">
             <a class="btn btn-primary mb-3" href="{{ url('dashboard-article/create') }}">Tambah Data</a>
+            @include('layouts.message')
             <!-- Responsive Table -->
             <div class="card">
                 <h5 class="card-header">Artikel</h5>
@@ -33,7 +34,7 @@
                                     <th scope="row">{{ $item->judul_artikel }}</th>
                                     <th scope="row">{!! $item->isi_artikel !!}</th>
                                     <th scope="row"
-                                        class="badge {{ $item->status_publish === 'publish' ? 'bg-primary text-white' : 'bg-warning text-white' }} m-2">
+                                        class=" text-center badge {{ $item->status_publish === 'publish' ? 'bg-primary text-white' : 'bg-warning text-white' }} m-2">
                                         {{ $item->status_publish }}
                                     </th>
                                     <td scope="row">
