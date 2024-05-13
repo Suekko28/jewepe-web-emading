@@ -31,7 +31,7 @@ Route::middleware(['auth'])->group(function () {
 });
 
 
-
+Route::resource('/home', HomeController::class);
 Route::get('/', [HomeController::class, 'index'])->name('home');
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 

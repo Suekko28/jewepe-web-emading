@@ -18,7 +18,9 @@ return new class extends Migration
             $table->string('judul_artikel');
             $table->text('isi_artikel');
             $table->enum('status_publish',['publish', 'draft']);
-            $table->foreign('user_id')->references('id')->on('user')->nullable()->onDelete('cascade'); // Tambahkan foreign key constraint            $table->timestamps();
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->nullable()->onDelete('cascade');          
+            $table->timestamps();
         });
     }
 

@@ -34,18 +34,20 @@ class ArtikelController extends Controller
     {
         $image = $request->file('image');
         $image->storeAs('public/images', $image->hashName());
-    
+
         $data = $request->all();
-    
+
+        // Assuming you have a 'user_id' available in the request, you can use it here
+        $userId = auth()->user()->id; // or however you retrieve the user ID
         tb_artikel::create([
+            'user_id' => $userId,
             'image' => $image->hashName(),
             'header' => $data['header'],
             'judul_artikel' => $data['judul_artikel'],
             'isi_artikel' => $data['isi_artikel'],
             'status_publish' => $data['status_publish'],
-            
         ]);
-    
+
         return redirect()->route('dashboard')->with('success', 'Data berhasil ditambahkan');
     }
     /**

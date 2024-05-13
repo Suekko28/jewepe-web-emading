@@ -24,7 +24,7 @@
                         <tbody>
                             <?php $i = $data->firstItem(); ?>
                             @foreach ($data as $item)
-                                <tr>
+                                <tr class="text-center">
                                     <th scope="row">{{ $i }}</th>
                                     <th scope="row">
                                         <img src="{{ asset('storage/images/' . $item->image) }}" class="rounded"

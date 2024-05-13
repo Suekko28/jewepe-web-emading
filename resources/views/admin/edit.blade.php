@@ -47,8 +47,9 @@
                             <label for="gambar">Gambar</label>
                             <input type="file" class="form-control" id="image" name="image" placeholder=""
                                 value="">
-                                <div>current : <a href="{{ asset('storage/images/' . $data->image) }}">{{ $data->image }}</a></div>
-                                <img src="{{ asset('storage/images/' . $data->image )  }}" class="rounded" style="width: 150px">
+                            <div>current : <a href="{{ asset('storage/images/' . $data->image) }}">{{ $data->image }}</a>
+                            </div>
+                            <img src="{{ asset('storage/images/' . $data->image) }}" class="rounded" style="width: 150px">
 
                         </div>
                         <div class="form-group mb-3">
@@ -63,8 +64,7 @@
                         </div>
                         <div class="form-group mb-3">
                             <label for="Konten">Isi Artikel</label>
-                            <textarea rows="20" class="form-control" id="isi_artikel" name="isi_artikel" placeholder="Masukkan Isi Materi"
-                                value="{{ $data->isi_artikel }}"></textarea>
+                            <textarea rows="20" class="form-control" id="isi_artikel" name="isi_artikel" placeholder="Masukkan Isi Materi">{{$data->isi_artikel}}</textarea>
                         </div>
                         <div class="form-group mb-3">
                             <label for="status">Status</label>
