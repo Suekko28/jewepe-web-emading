@@ -23,7 +23,7 @@
     <!-- Vendors draft -->
     <link rel="stylesheet"
         href="{{ asset('assets/admin/assets/vendor/libs/perfect-scrollbar/perfect-scrollbar.draft') }}" />
-
+    
     <!-- Page draft -->
 
     <!-- Helpers -->
